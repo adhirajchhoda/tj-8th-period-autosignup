@@ -1,4 +1,4 @@
-name: 8th Period Monitor
+name: 8th Period Auto-Signup
 
 on:
   schedule:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:  # Allow manual triggers
 
 jobs:
-  monitor:
+  autosignup:
     runs-on: ubuntu-latest
     
     steps:
@@ -24,7 +24,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    - name: Run monitoring script
+    - name: Install Playwright browsers
+      run: |
+        python -m playwright install chromium
+        python -m playwright install-deps
+    
+    - name: Run auto-signup monitor
       env:
         # Authentication
         LOGIN_URL: ${{ secrets.LOGIN_URL }}
@@ -37,16 +42,17 @@ jobs:
         URL_END: ${{ secrets.URL_END }}
         FAVORITES: ${{ secrets.FAVORITES }}
         
+        # Auto-signup settings
+        AUTO_SIGNUP: ${{ secrets.AUTO_SIGNUP }}
+        RATE_LIMIT_DELAY: ${{ secrets.RATE_LIMIT_DELAY }}
+        
         # Notification settings
         NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
         NOTIFICATION_PASSWORD: ${{ secrets.NOTIFICATION_PASSWORD }}
         TARGET_SMS: ${{ secrets.TARGET_SMS }}
-        
-        # Rate limiting
-        RATE_LIMIT_DELAY: ${{ secrets.RATE_LIMIT_DELAY }}
       run: |
-        python monitor.py
-      timeout-minutes: 30
+        python auto_signup_monitor.py
+      timeout-minutes: 45
     
     - name: Log completion
       run: |
