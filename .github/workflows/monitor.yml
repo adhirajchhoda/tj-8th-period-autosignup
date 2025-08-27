@@ -51,7 +51,7 @@ jobs:
         NOTIFICATION_PASSWORD: ${{ secrets.NOTIFICATION_PASSWORD }}
         TARGET_SMS: ${{ secrets.TARGET_SMS }}
       run: |
-        python auto_signup_monitor.py
+        python scripts/run_monitor.py
       timeout-minutes: 45
     
     - name: Log completion
