@@ -1,0 +1,39 @@
+# Configuration Template for GitHub Secrets
+# Copy these exact secret names to your GitHub repository
+
+# REQUIRED SECRETS:
+
+LOGIN_URL=https://ion.tjhsst.edu/login
+USERNAME=your_ion_username
+PASSWORD=your_ion_password
+
+URL_BASE=https://ion.tjhsst.edu/eighth/signup/
+URL_START=4555
+URL_END=4583
+
+FAVORITES=Investment Club,Rocketry Club,Computer Vision Club,Art Club
+# ^ Edit this list with YOUR favorite clubs, comma-separated
+
+NOTIFICATION_EMAIL=your_email@gmail.com
+# ^ Gmail account for sending SMS
+
+NOTIFICATION_PASSWORD=your_gmail_app_password
+# ^ 16-character app password from Gmail (NOT your regular password)
+
+TARGET_SMS=your_phone_number@carrier_gateway.com
+# ^ Examples:
+#   Verizon: 5712237914@vtext.com
+#   AT&T: 5712237914@txt.att.net
+#   T-Mobile: 5712237914@tmomail.net
+#   Sprint: 5712237914@messaging.sprintpcs.com
+
+# OPTIONAL SECRETS:
+
+RATE_LIMIT_DELAY=15
+# ^ Seconds to wait between requests (default: 15)
+
+# SECURITY NOTES:
+# - Never commit actual values to git
+# - All secrets are stored encrypted in GitHub
+# - Only your repository can access these secrets
+# - Phone number is never logged or exposed
